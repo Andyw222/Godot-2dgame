@@ -22,7 +22,7 @@ offset_bottom = 81.0
 grow_horizontal = 2
 theme_override_fonts/font = ExtResource("2_4xd5h")
 theme_override_font_sizes/font_size = 64
-text = "Score: 0"
+text = "Time: 0"
 
 [node name="Message" type="Label" parent="."]
 custom_minimum_size = Vector2(2.08165e-12, 2.08165e-12)
@@ -81,7 +81,7 @@ offset_right = 310.0
 grow_vertical = 0
 theme_override_fonts/font = ExtResource("2_4xd5h")
 theme_override_font_sizes/font_size = 64
-item_count = 4
+item_count = 5
 selected = 0
 popup/item_0/text = "Easy"
 popup/item_0/id = 0
@@ -89,8 +89,21 @@ popup/item_1/text = "Medium"
 popup/item_1/id = 1
 popup/item_2/text = "Hard"
 popup/item_2/id = 2
-popup/item_3/text = "Ded"
+popup/item_3/text = "Extreme"
 popup/item_3/id = 3
+popup/item_4/text = "Ded"
+popup/item_4/id = 4
+
+[node name="MobSurvived" type="Label" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -466.0
+offset_bottom = 81.0
+grow_horizontal = 0
+theme_override_fonts/font = ExtResource("2_4xd5h")
+theme_override_font_sizes/font_size = 64
+text = "Mob Exited: 0"
 
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="timeout" from="MessageTimer" to="." method="_on_message_timer_timeout"]

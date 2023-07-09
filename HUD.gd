@@ -30,7 +30,7 @@ func show_game_over():
 	$StartButton.show()
 
 func update_score(score):
-	$ScoreLabel.text = "Score: %s" % str(score)
+	$ScoreLabel.text = "Time: %s" % str(score)
 
 func _on_message_timer_timeout():
 	$Message.hide()
@@ -42,3 +42,6 @@ func _on_start_button_pressed():
 
 func update_lives(lives):
 	$LivesLabel.text = "Lives: %s" % str(lives)
+	
+func update_mob_left(mob_left):
+	$MobSurvived.text = "Mobs Exited %s" % str(mob_left)

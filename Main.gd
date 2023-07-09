@@ -5,6 +5,8 @@ var score
 var lives
 @export var lives_base = 3
 var mob_settings
+var mob_left = 0
+var dead = false
 
 
 # Called when the node enters the scene tree for the first time.
@@ -17,11 +19,13 @@ func _process(delta):
 
 
 func game_over():
+
 	$ScoreTimer.stop()
 	$MobTimer.stop()
 	$HUD.show_game_over()
 	$Music.stop()
 	$DeathSound.play() 
+	dead = true
 	
 func lives_left():
 	print("Lives Left Function Triggered")
@@ -41,7 +45,9 @@ func lives_left():
 	
 func new_game():
 	score = 0
+	mob_left = 0
 	lives = lives_base
+	dead = false
 	match $HUD/DifficultyButton.selected:
 		0:
 			mob_settings = [150.0, 250.0, 0.5]
@@ -54,6 +60,8 @@ func new_game():
 	
 		3:
 			mob_settings = [700.0, 900.0, 0.2]
+		4:
+			mob_settings = [1400.0, 1800.0, 0.1]
 	$MobTimer.wait_time = mob_settings[2]
 	$Player.start($StartPosition.position)
 	$StartTimer.start()
@@ -70,6 +78,7 @@ func new_game():
 
 func _on_mob_timer_timeout():
 	var mob = mob_scene.instantiate()
+	mob.mob_leave.connect(_on_mob_mob_leave)
 
 	# Choose a random location on Path2D.
 	var mob_spawn_location = get_node("MobPath/MobSpawnLocation")
@@ -110,3 +119,10 @@ func _on_start_timer_timeout():
 func _on_hit_timer_timeout():
 	$Player.update_sprite_mode("")
 	$Player.update_indestructible(false)
+
+
+func _on_mob_mob_leave(blah):
+	if ! dead:
+		mob_left += 1
+		$HUD.update_mob_left(mob_left)
+		print("mobexited %s" % mob_left)

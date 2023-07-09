@@ -2,22 +2,9 @@
 
 Code is based upon [godot's 2d tutorial](https://docs.godotengine.org/en/stable/getting_started/first_2d_game/index.html#), we are going to add additional features
 
-## Ideas
 
 
-
-### Change score from seconds to mobs dodged
-
-* Add counter for number of mobs
-* Keep seconds counter in memory,show on final stats page, e.g:
-```
-Seconds lasted: 20
-Mobs dodged: 43
-```
-* Remove 2 second end-of-game timer
-* Create "Finish" button on stats page
-
-## Implemented
+## Additional Features Added
 
 ### Increase screen size
 
@@ -38,3 +25,12 @@ Mobs dodged: 43
 * Make easy/normal/hard/ded levels
 * Vary mob spawn rates
 * Vary speed
+
+### Change score from seconds to mobs dodged
+
+* Add counter for number of mobs
+* Keep seconds counter in memory,show on final stats page, e.g:
+```
+Seconds lasted: 20
+Mobs dodged: 43
+```
