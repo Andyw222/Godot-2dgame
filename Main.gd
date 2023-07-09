@@ -22,10 +22,15 @@ func game_over():
 	$DeathSound.play() 
 	
 func lives_left():
+	print("Lives Left Function Triggered")
 	if lives >= 1:
+		print("Not Dead yet! %s Lives left." % lives)
 		lives -= 1
 		$HUD.update_lives(lives)
+		print("Starting Hit Timer")
+		$HitTimer.start()
 	else:
+		print("Dead!")
 		$Player.nolives()
 		game_over()
 
@@ -77,4 +82,9 @@ func _on_score_timer_timeout():
 func _on_start_timer_timeout():
 	$MobTimer.start()
 	$ScoreTimer.start()
+	
 
+
+
+func _on_hit_timer_timeout():
+	$Player.update_sprite_mode("")

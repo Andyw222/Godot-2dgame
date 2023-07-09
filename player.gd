@@ -52,3 +52,6 @@ func nolives():
 	hide()
 	
 	$CollisionShape2D.set_deferred("disabled", true)
+	
+func update_sprite_mode(new_mode):
+	sprite_mode = new_mode
