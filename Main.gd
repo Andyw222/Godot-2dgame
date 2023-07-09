@@ -4,6 +4,8 @@ extends Node
 var score
 var lives
 @export var lives_base = 3
+var mob_low
+var mob_high
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -24,7 +26,6 @@ func game_over():
 func lives_left():
 	print("Lives Left Function Triggered")
 	if lives > 1:
-		
 		lives -= 1
 		$HUD.update_lives(lives)
 		print("Not Dead yet! %s Lives left." % lives)
@@ -48,6 +49,20 @@ func new_game():
 	$HUD.show_message("Get Ready\n\n\n\n")
 	get_tree().call_group("mobs", "queue_free")
 	$Music.play()
+	match $HUD/DifficultyButton.selected:
+		0:
+			mob_low = 150.0
+			mob_high = 250.0
+		1:
+			mob_low = 250.0
+			mob_high = 350.0
+		2:
+			mob_low = 350.0
+			mob_high = 450.0
+		3:
+			mob_low = 3500.0
+			mob_high = 4500.0
+	
 	
 
 func _on_mob_timer_timeout():
@@ -68,7 +83,7 @@ func _on_mob_timer_timeout():
 	mob.rotation = direction
 
 	# Choose the velocity for the mob.
-	var velocity = Vector2(randf_range(150.0, 250.0), 0.0)
+	var velocity = Vector2(randf_range(mob_low, mob_high), 0.0)
 	mob.linear_velocity = velocity.rotated(direction)
 
 	# Spawn the mob by adding it to the Main scene.
