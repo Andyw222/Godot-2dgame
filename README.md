@@ -6,10 +6,6 @@ Code is based upon [godot's 2d tutorial](https://docs.godotengine.org/en/stable/
 
 ### Lives
 
-We will implement lives:
-
-* Use the current play asset as a life indicator
-* 3 lives per game
 * When hit, character flashes
 * When hit, character immobilised while flashing
 
@@ -39,3 +35,7 @@ Mobs dodged: 43
 * Increased mob scale to 0.75
 * changed mob spawn path
 * repositioned start postion of player
+
+### lives updated
+* Use the current play asset as a life indicator
+* 3 lives per game
