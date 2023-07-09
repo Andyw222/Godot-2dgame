@@ -3,6 +3,7 @@ signal hit
 @export var speed = 400
 var screen_size
 var sprite_mode = ""
+var indestructible = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -39,8 +40,10 @@ func _process(delta):
 		$AnimatedSprite2D.flip_v = velocity.y > 0
 
 func _on_body_entered(body):
-	hit.emit()
-	sprite_mode = "_hit"
+	if ! indestructible:
+		hit.emit()
+		sprite_mode = "_hit"
+		indestructible = true
 	
 func start(pos):
 	position = pos
@@ -55,3 +58,6 @@ func nolives():
 	
 func update_sprite_mode(new_mode):
 	sprite_mode = new_mode
+	
+func update_indestructible(new_mode):
+	indestructible = new_mode

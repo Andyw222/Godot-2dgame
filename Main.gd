@@ -88,3 +88,4 @@ func _on_start_timer_timeout():
 
 func _on_hit_timer_timeout():
 	$Player.update_sprite_mode("")
+	$Player.update_indestructible(false)
