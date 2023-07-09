@@ -4,11 +4,7 @@ Code is based upon [godot's 2d tutorial](https://docs.godotengine.org/en/stable/
 
 ## Ideas
 
-### Difficulty levels
 
-* Make easy/normal/hard levels
-* Vary mob spawn rates
-* Vary speed
 
 ### Change score from seconds to mobs dodged
 
@@ -36,3 +32,9 @@ Mobs dodged: 43
 * 3 lives per game
 * When hit, character flashes
 * When hit, character imortal while flashing
+
+### Difficulty levels
+
+* Make easy/normal/hard/ded levels
+* Vary mob spawn rates
+* Vary speed

@@ -4,8 +4,8 @@ extends Node
 var score
 var lives
 @export var lives_base = 3
-var mob_low
-var mob_high
+var mob_settings
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -42,6 +42,19 @@ func lives_left():
 func new_game():
 	score = 0
 	lives = lives_base
+	match $HUD/DifficultyButton.selected:
+		0:
+			mob_settings = [150.0, 250.0, 0.5]
+	
+		1:
+			mob_settings = [250.0, 350.0, 0.4]
+			
+		2:
+			mob_settings = [350.0, 450.0, 0.3]
+	
+		3:
+			mob_settings = [700.0, 900.0, 0.2]
+	$MobTimer.wait_time = mob_settings[2]
 	$Player.start($StartPosition.position)
 	$StartTimer.start()
 	$HUD.update_score(score)
@@ -49,19 +62,9 @@ func new_game():
 	$HUD.show_message("Get Ready\n\n\n\n")
 	get_tree().call_group("mobs", "queue_free")
 	$Music.play()
-	match $HUD/DifficultyButton.selected:
-		0:
-			mob_low = 150.0
-			mob_high = 250.0
-		1:
-			mob_low = 250.0
-			mob_high = 350.0
-		2:
-			mob_low = 350.0
-			mob_high = 450.0
-		3:
-			mob_low = 3500.0
-			mob_high = 4500.0
+	$Player.update_sprite_mode("")
+	$Player.update_indestructible(false)
+	
 	
 	
 
@@ -83,7 +86,7 @@ func _on_mob_timer_timeout():
 	mob.rotation = direction
 
 	# Choose the velocity for the mob.
-	var velocity = Vector2(randf_range(mob_low, mob_high), 0.0)
+	var velocity = Vector2(randf_range(mob_settings[0], mob_settings[1]), 0.0)
 	mob.linear_velocity = velocity.rotated(direction)
 
 	# Spawn the mob by adding it to the Main scene.
