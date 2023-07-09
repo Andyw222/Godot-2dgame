@@ -51,6 +51,7 @@ func start(pos):
 	$CollisionShape2D.disabled = false
 	$AnimatedSprite2D.animation = "walk"
 	$AnimatedSprite2D.play()
+	
 func nolives():
 	hide()
 	

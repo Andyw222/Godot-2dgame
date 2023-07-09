@@ -23,14 +23,17 @@ func game_over():
 	
 func lives_left():
 	print("Lives Left Function Triggered")
-	if lives >= 1:
-		print("Not Dead yet! %s Lives left." % lives)
+	if lives > 1:
+		
 		lives -= 1
 		$HUD.update_lives(lives)
+		print("Not Dead yet! %s Lives left." % lives)
 		print("Starting Hit Timer")
 		$HitTimer.start()
 	else:
 		print("Dead!")
+		lives -= 1
+		$HUD.update_lives(lives)
 		$Player.nolives()
 		game_over()
 
