@@ -2,8 +2,8 @@ extends Node
 
 @export var mob_scene: PackedScene
 var score
-@export var lives = 3
-
+var lives
+@export var lives_base = 3
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -24,6 +24,7 @@ func game_over():
 func lives_left():
 	if lives >= 1:
 		lives -= 1
+		$HUD.update_lives(lives)
 	else:
 		$Player.nolives()
 		game_over()
@@ -31,9 +32,11 @@ func lives_left():
 	
 func new_game():
 	score = 0
+	lives = lives_base
 	$Player.start($StartPosition.position)
 	$StartTimer.start()
 	$HUD.update_score(score)
+	$HUD.update_lives(lives)
 	$HUD.show_message("Get Ready\n\n\n\n")
 	get_tree().call_group("mobs", "queue_free")
 	$Music.play()
