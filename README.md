@@ -6,7 +6,7 @@ Code is based upon [godot's 2d tutorial](https://docs.godotengine.org/en/stable/
 
 ### Lives
 
-* When hit, character flashes
+
 * When hit, character immobilised while flashing
 
 ### Difficulty levels
@@ -39,3 +39,4 @@ Mobs dodged: 43
 ### lives updated
 * Use the current play asset as a life indicator
 * 3 lives per game
+* When hit, character flashes
