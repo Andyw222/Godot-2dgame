@@ -4,11 +4,6 @@ Code is based upon [godot's 2d tutorial](https://docs.godotengine.org/en/stable/
 
 ## Ideas
 
-### Lives
-
-
-* When hit, character immobilised while flashing
-
 ### Difficulty levels
 
 * Make easy/normal/hard levels
@@ -40,3 +35,4 @@ Mobs dodged: 43
 * Use the current play asset as a life indicator
 * 3 lives per game
 * When hit, character flashes
+* When hit, character imortal while flashing
