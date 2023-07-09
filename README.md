@@ -13,12 +13,6 @@ We will implement lives:
 * When hit, character flashes
 * When hit, character immobilised while flashing
 
-### Increase screen size
-
-* Make Landscape
-* 1024 x 768 / 1280 x 1024 / decide how to make dynamic
-* Increase player / mob scale
-
 ### Difficulty levels
 
 * Make easy/normal/hard levels
@@ -35,3 +29,13 @@ Mobs dodged: 43
 ```
 * Remove 2 second end-of-game timer
 * Create "Finish" button on stats page
+
+## Implemented
+
+### Increase screen size
+
+* Made Landscape
+* 1600 x 1200
+* Increased mob scale to 0.75
+* changed mob spawn path
+* repositioned start postion of player
