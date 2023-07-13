@@ -7,11 +7,32 @@ var lives
 var mob_settings
 var mob_left = 0
 var dead = false
-
-
+#var save_data = {"highscore": 0}
+var save_data = {
+	0: {
+		"highscore": 0
+		},
+	1: {
+		"highscore": 0
+		},
+	2: {
+		"highscore": 0
+		},
+	3: {
+		"highscore": 0
+		},
+	4: {
+		"highscore": 0
+		},
+	}
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
+	var load = $SaveGame.load()
+	if load == null:
+		save_data = save_data
+	else:
+		save_data = load
+	print(JSON.stringify(save_data))
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -26,6 +47,11 @@ func game_over():
 	$Music.stop()
 	$DeathSound.play() 
 	dead = true
+	var final_score = score * mob_left
+	print("final score %s" % final_score)
+	if final_score > save_data[$HUD/DifficultyButton.selected].highscore:
+		save_data[$HUD/DifficultyButton.selected].highscore = final_score
+	$SaveGame.save(save_data)
 	
 func lives_left():
 	print("Lives Left Function Triggered")
@@ -112,6 +138,7 @@ func _on_score_timer_timeout():
 func _on_start_timer_timeout():
 	$MobTimer.start()
 	$ScoreTimer.start()
+	
 	
 
 

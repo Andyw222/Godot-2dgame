@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bdc5jwppp0m10"]
+
+[ext_resource type="Script" path="res://save_game.gd" id="1_rbxpq"]
+
+[node name="SaveGame" type="Node"]
+script = ExtResource("1_rbxpq")
