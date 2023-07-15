@@ -32,8 +32,6 @@ func show_game_over():
 	$StartButton.show()
 	$DifficultyButton.show()
 
-func update_score(score):
-	$ScoreLabel.text = "Time: %s" % str(score)
 
 func _on_message_timer_timeout():
 	$Message.hide()
@@ -48,8 +46,7 @@ func update_lives(lives):
 #	$LivesLabel.text = "Lives: %s" % str(lives)
 	$HBoxContainer.update_lives(lives)
 	
-func update_mob_left(mob_left):
-	$MobSurvived.text = "Mobs Exited %s" % str(mob_left)
+
 
 func name_box_show():
 	$NameBox.show()

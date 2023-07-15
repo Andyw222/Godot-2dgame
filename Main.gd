@@ -1,11 +1,13 @@
 extends Node
 
 @export var mob_scene: PackedScene
-var score
+
 var lives
 @export var lives_base = 3
 var mob_settings
-var mob_left = 0
+var score
+var mob_left
+var final_score
 var dead = false
 #var save_data = {"highscore": 0}
 var save_data = {
@@ -45,8 +47,6 @@ func game_over():
 	dead = true
 	$ScoreTimer.stop()
 	$MobTimer.stop()
-	
-	var final_score = score * mob_left
 	print("final score %s" % final_score)
 	if final_score > save_data[$HUD/DifficultyButton.selected].highscore:
 		save_data[$HUD/DifficultyButton.selected].highscore = final_score
@@ -79,7 +79,9 @@ func lives_left():
 	
 func new_game():
 	score = 0
-	mob_left = 0
+	#Mod left starts at 1 to enable score to update from start of game
+	mob_left = 1 
+	final_score = 0
 	lives = lives_base
 	dead = false
 	match $HUD/DifficultyButton.selected:
@@ -99,7 +101,6 @@ func new_game():
 	$MobTimer.wait_time = mob_settings[2]
 	$Player.start($StartPosition.position)
 	$StartTimer.start()
-	$HUD.update_score(score)
 	$HUD.update_lives(lives)
 	$HUD.show_message("Get Ready\n\n\n\n")
 	get_tree().call_group("mobs", "queue_free")
@@ -140,7 +141,9 @@ func _on_mob_timer_timeout():
 
 func _on_score_timer_timeout():
 	score += 1
-	$HUD.update_score(score)
+	final_score = score * mob_left
+	print("Score: %s" % final_score)
+	
 
 
 func _on_start_timer_timeout():
@@ -159,5 +162,4 @@ func _on_hit_timer_timeout():
 func _on_mob_mob_leave(blah):
 	if ! dead:
 		mob_left += 1
-		$HUD.update_mob_left(mob_left)
 		print("mobexited %s" % mob_left)

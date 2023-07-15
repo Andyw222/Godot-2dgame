@@ -13,18 +13,6 @@ events = [SubResource("InputEventAction_xrmis")]
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_hemeg")
 
-[node name="ScoreLabel" type="Label" parent="."]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -22.5
-offset_right = 22.5
-offset_bottom = 81.0
-grow_horizontal = 2
-theme_override_fonts/font = ExtResource("2_4xd5h")
-theme_override_font_sizes/font_size = 64
-text = "Time: 0"
-
 [node name="Message" type="Label" parent="."]
 custom_minimum_size = Vector2(2.08165e-12, 2.08165e-12)
 anchors_preset = 8
@@ -93,17 +81,6 @@ popup/item_3/text = "Extreme"
 popup/item_3/id = 3
 popup/item_4/text = "Ded"
 popup/item_4/id = 4
-
-[node name="MobSurvived" type="Label" parent="."]
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -466.0
-offset_bottom = 81.0
-grow_horizontal = 0
-theme_override_fonts/font = ExtResource("2_4xd5h")
-theme_override_font_sizes/font_size = 64
-text = "Mob Exited: 0"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 offset_left = 7.0
