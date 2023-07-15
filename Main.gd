@@ -110,6 +110,7 @@ func new_game():
 	
 	
 	
+	
 
 func _on_mob_timer_timeout():
 	var mob = mob_scene.instantiate()
@@ -143,7 +144,7 @@ func _on_score_timer_timeout():
 	score += 1
 	final_score = score * mob_left
 	print("Score: %s" % final_score)
-	
+	$HUD.update_highscore(final_score)
 
 
 func _on_start_timer_timeout():

@@ -41,6 +41,9 @@ func _on_start_button_pressed():
 	$StartButton.hide()
 	$DifficultyButton.hide()
 	start_game.emit()
+	
+func update_highscore(final_score):
+	$HighscoreLabel.text = "Score: %s" % final_score
 
 func update_lives(lives):
 #	$LivesLabel.text = "Lives: %s" % str(lives)
