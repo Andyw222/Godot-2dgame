@@ -37,6 +37,8 @@ func _process(delta):
 	elif velocity.y != 0:
 		$AnimatedSprite2D.animation = "up%s" % sprite_mode
 		$AnimatedSprite2D.flip_v = velocity.y > 0
+	else:
+		$AnimatedSprite2D.animation = "walk%s" % sprite_mode
 
 func _on_body_entered(body):
 	if ! indestructible:
