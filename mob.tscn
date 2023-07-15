@@ -52,6 +52,7 @@ height = 58.0
 position = Vector2(4, 1)
 collision_mask = 0
 gravity_scale = 2.66454e-15
+linear_damp_mode = 1
 script = ExtResource("1_yxci4")
 metadata/_edit_group_ = true
 

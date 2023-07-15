@@ -10,25 +10,41 @@ var mob_left
 var final_score
 var dead = false
 #var save_data = {"highscore": 0}
-var save_data = {
-	0: {
-		"highscore": 0
-		},
-	1: {
-		"highscore": 0
-		},
-	2: {
-		"highscore": 0
-		},
-	3: {
-		"highscore": 0
-		},
-	4: {
-		"highscore": 0
-		},
-	}
+#var save_data = {
+#	0: {
+#		"highscore": 0
+#		},
+#	1: {
+#		"highscore": 0
+#		},
+#	2: {
+#		"highscore": 0
+#		},
+#	3: {
+#		"highscore": 0
+#		},
+#	4: {
+#		"highscore": 0
+#		},
+#	}
+	
+var save_data = {}
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	for n in $HUD/DifficultyButton.item_count:
+		print(n)
+		
+		var fred = {
+					n: {
+						"highscore": 0,
+						"name": ""
+						}
+					}
+		save_data.merge(fred)
+#		save_data[$HUD/DifficultyButton.selected].name = name
+		#new_savedata[n].highscore = 0
+	print(JSON.stringify(save_data))
 	var load = $SaveGame.load()
 	if load == null:
 		save_data = save_data
