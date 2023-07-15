@@ -1,12 +1,16 @@
 # My Game
 
+* [link to my repo](https://github.com/Andyw222/Godot-2dgame)
+* [link to Itch.io](https://andyw222.itch.io/dodge-the-creeps)
+
 Code is based upon [godot's 2d tutorial](https://docs.godotengine.org/en/stable/getting_started/first_2d_game/index.html#), we are going to add additional features
 
-## additional features for future development
-
-* add mute button (with last setting memory)
 
 ## Additional Features Added
+
+### Settings Added
+
+* Added sound mute button
 
 ### Save game
 
@@ -41,11 +45,3 @@ Code is based upon [godot's 2d tutorial](https://docs.godotengine.org/en/stable/
 * Vary mob spawn rates
 * Vary speed
 
-### Change score from seconds to mobs dodged
-
-* Add counter for number of mobs
-* Keep seconds counter in memory,show on final stats page, e.g:
-```
-Seconds lasted: 20
-Mobs dodged: 43
-```
