@@ -45,17 +45,21 @@ func game_over():
 	dead = true
 	$ScoreTimer.stop()
 	$MobTimer.stop()
-	$HUD.name_box_show()
 	
-func continue_game_over(name):
-	$HUD.name_box_hide()
-	$HUD.show_game_over()
 	var final_score = score * mob_left
 	print("final score %s" % final_score)
 	if final_score > save_data[$HUD/DifficultyButton.selected].highscore:
 		save_data[$HUD/DifficultyButton.selected].highscore = final_score
 		save_data[$HUD/DifficultyButton.selected].name = name
+		$HUD.name_box_show()
+	else: 
+		continue_game_over(null)
 	$SaveGame.save(save_data)
+	
+func continue_game_over(name):
+	$HUD.name_box_hide()
+	$HUD.show_game_over()
+	
 	
 func lives_left():
 	print("Lives Left Function Triggered")
