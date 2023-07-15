@@ -12,4 +12,3 @@ func load():
 	else:
 		var content = savegame.get_var()
 		return content
-	

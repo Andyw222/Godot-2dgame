@@ -107,10 +107,6 @@ func new_game():
 	$Music.play()
 	$Player.update_sprite_mode("")
 	$Player.update_indestructible(false)
-	
-	
-	
-	
 
 func _on_mob_timer_timeout():
 	var mob = mob_scene.instantiate()
@@ -136,9 +132,6 @@ func _on_mob_timer_timeout():
 
 	# Spawn the mob by adding it to the Main scene.
 	add_child(mob)
-	
-	
-
 
 func _on_score_timer_timeout():
 	score += 1
@@ -146,21 +139,18 @@ func _on_score_timer_timeout():
 	print("Score: %s" % final_score)
 	$HUD.update_highscore(final_score)
 
-
 func _on_start_timer_timeout():
 	$MobTimer.start()
 	$ScoreTimer.start()
-	
-	
-
-
 
 func _on_hit_timer_timeout():
 	$Player.update_sprite_mode("")
 	$Player.update_indestructible(false)
 
-
 func _on_mob_mob_leave(blah):
 	if ! dead:
 		mob_left += 1
 		print("mobexited %s" % mob_left)
+		final_score = score * mob_left
+		print("Score: %s" % final_score)
+		$HUD.update_highscore(final_score)

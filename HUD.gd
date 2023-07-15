@@ -6,10 +6,6 @@ signal highscore_name
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass
-	#if Input.is_action_pressed("start_game"):
-		#start_game.emit()
-		
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -24,7 +20,6 @@ func show_game_over():
 	show_message("Game Over")
 	# Wait until the MessageTimer has counted down.
 	await $MessageTimer.timeout
-
 	$Message.text = "Dodge the\nCreeps!"
 	$Message.show()
 	# Make a one-shot timer and wait for it to finish.
@@ -32,10 +27,8 @@ func show_game_over():
 	$StartButton.show()
 	$DifficultyButton.show()
 
-
 func _on_message_timer_timeout():
 	$Message.hide()
-
 
 func _on_start_button_pressed():
 	$StartButton.hide()
@@ -48,8 +41,6 @@ func update_highscore(final_score):
 func update_lives(lives):
 #	$LivesLabel.text = "Lives: %s" % str(lives)
 	$HBoxContainer.update_lives(lives)
-	
-
 
 func name_box_show():
 	$NameBox.show()

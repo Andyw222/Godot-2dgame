@@ -9,7 +9,7 @@ var indestructible = false
 func _ready():
 	screen_size = get_viewport_rect().size
 	hide()
-	
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	var velocity = Vector2.ZERO
@@ -24,7 +24,6 @@ func _process(delta):
 	
 	if velocity.length() > 0:
 		velocity = velocity.normalized() * speed
-		
 	
 	position += velocity * delta
 	position.x = clamp(position.x, 0, screen_size.x)
