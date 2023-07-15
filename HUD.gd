@@ -1,7 +1,7 @@
 extends CanvasLayer
 signal start_game
 signal highscore_name
-
+signal highscore_screen_finish
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -29,6 +29,9 @@ func show_game_over():
 
 func _on_message_timer_timeout():
 	$Message.hide()
+	
+
+	
 
 func _on_start_button_pressed():
 	$StartButton.hide()
@@ -50,3 +53,13 @@ func name_box_hide():
 
 func _on_name_box_text_submitted(new_text):
 	highscore_name.emit(new_text) # Replace with function body.
+	
+func highscore_screen_show(highscore_text):
+	$HighscoreScreenLabel.text = highscore_text
+	$HighscoreScreenLabel.show()
+	$HighscoreScreenTimer.start()
+
+func _on_highscore_screen_timer_timeout():
+	highscore_screen_finish.emit()
+	print("highscore screen finish emitted")
+	$HighscoreScreenLabel.hide()

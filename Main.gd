@@ -9,24 +9,7 @@ var score
 var mob_left
 var final_score
 var dead = false
-#var save_data = {"highscore": 0}
-#var save_data = {
-#	0: {
-#		"highscore": 0
-#		},
-#	1: {
-#		"highscore": 0
-#		},
-#	2: {
-#		"highscore": 0
-#		},
-#	3: {
-#		"highscore": 0
-#		},
-#	4: {
-#		"highscore": 0
-#		},
-#	}
+
 	
 var save_data = {}
 
@@ -35,14 +18,14 @@ func _ready():
 	for n in $HUD/DifficultyButton.item_count:
 		print(n)
 		
-		var fred = {
+		var level = {
 					n: {
 						"highscore": 0,
 						"name": ""
 						}
 					}
-		save_data.merge(fred)
-#		save_data[$HUD/DifficultyButton.selected].name = name
+		save_data.merge(level)
+
 		#new_savedata[n].highscore = 0
 	print(JSON.stringify(save_data))
 	var load = $SaveGame.load()
@@ -56,7 +39,13 @@ func _ready():
 func _process(delta):
 	pass
 
-
+func highscore_text():
+	var highscore_message = "Highscore:\n\n"
+	for n in $HUD/DifficultyButton.item_count:
+		highscore_message = highscore_message + "%s %s %s\n\n" % [$HUD/DifficultyButton.get_item_text(n), save_data[n].name, save_data[n].highscore]
+	#print(highscore_message)
+	return highscore_message
+	
 func game_over():
 	$Music.stop()
 	$DeathSound.play() 
@@ -65,17 +54,22 @@ func game_over():
 	$MobTimer.stop()
 	print("final score %s" % final_score)
 	if final_score > save_data[$HUD/DifficultyButton.selected].highscore:
-		save_data[$HUD/DifficultyButton.selected].highscore = final_score
-		save_data[$HUD/DifficultyButton.selected].name = name
 		$HUD.name_box_show()
 	else: 
 		continue_game_over(null)
-	$SaveGame.save(save_data)
+	
 	
 func continue_game_over(name):
+	if final_score > save_data[$HUD/DifficultyButton.selected].highscore:
+		save_data[$HUD/DifficultyButton.selected].highscore = final_score
+		save_data[$HUD/DifficultyButton.selected].name = name
+	$SaveGame.save(save_data)
 	$HUD.name_box_hide()
+	$HUD.highscore_screen_show(highscore_text())
+
+func after_highscore():
+	print("after highscore")
 	$HUD.show_game_over()
-	
 	
 func lives_left():
 	print("Lives Left Function Triggered")
