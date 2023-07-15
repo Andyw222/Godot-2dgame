@@ -1,5 +1,6 @@
 extends CanvasLayer
 signal start_game
+signal highscore_name
 
 
 # Called when the node enters the scene tree for the first time.
@@ -49,4 +50,12 @@ func update_lives(lives):
 	
 func update_mob_left(mob_left):
 	$MobSurvived.text = "Mobs Exited %s" % str(mob_left)
+
+func name_box_show():
+	$NameBox.show()
 	
+func name_box_hide():
+	$NameBox.hide()
+
+func _on_name_box_text_submitted(new_text):
+	highscore_name.emit(new_text) # Replace with function body.

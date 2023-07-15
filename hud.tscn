@@ -121,5 +121,16 @@ layout_mode = 2
 [node name="TextureRect" type="TextureRect" parent="HBoxContainer"]
 layout_mode = 2
 
+[node name="NameBox" type="LineEdit" parent="."]
+visible = false
+offset_left = 732.0
+offset_top = 254.0
+offset_right = 799.062
+offset_bottom = 285.0
+theme_override_fonts/font = ExtResource("2_4xd5h")
+theme_override_font_sizes/font_size = 64
+placeholder_text = "Name"
+
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="timeout" from="MessageTimer" to="." method="_on_message_timer_timeout"]
+[connection signal="text_submitted" from="NameBox" to="." method="_on_name_box_text_submitted"]

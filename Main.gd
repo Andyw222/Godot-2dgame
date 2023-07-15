@@ -40,17 +40,21 @@ func _process(delta):
 
 
 func game_over():
-
-	$ScoreTimer.stop()
-	$MobTimer.stop()
-	$HUD.show_game_over()
 	$Music.stop()
 	$DeathSound.play() 
 	dead = true
+	$ScoreTimer.stop()
+	$MobTimer.stop()
+	$HUD.name_box_show()
+	
+func continue_game_over(name):
+	$HUD.name_box_hide()
+	$HUD.show_game_over()
 	var final_score = score * mob_left
 	print("final score %s" % final_score)
 	if final_score > save_data[$HUD/DifficultyButton.selected].highscore:
 		save_data[$HUD/DifficultyButton.selected].highscore = final_score
+		save_data[$HUD/DifficultyButton.selected].name = name
 	$SaveGame.save(save_data)
 	
 func lives_left():
