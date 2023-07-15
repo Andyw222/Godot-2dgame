@@ -5,6 +5,9 @@
 
 Code is based upon [godot's 2d tutorial](https://docs.godotengine.org/en/stable/getting_started/first_2d_game/index.html#), we are going to add additional features
 
+## Controls
+
+* The game is controlled using the Up, Down, Left, Right Arrows to move the character
 
 ## Additional Features Added
 
