@@ -140,7 +140,22 @@ horizontal_alignment = 1
 wait_time = 5.0
 one_shot = true
 
+[node name="CheckButton" type="CheckButton" parent="."]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -223.0
+offset_top = -86.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("2_4xd5h")
+theme_override_font_sizes/font_size = 64
+text = "Mute"
+
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="timeout" from="MessageTimer" to="." method="_on_message_timer_timeout"]
 [connection signal="text_submitted" from="NameBox" to="." method="_on_name_box_text_submitted"]
 [connection signal="timeout" from="HighscoreScreenTimer" to="." method="_on_highscore_screen_timer_timeout"]
+[connection signal="toggled" from="CheckButton" to="." method="_on_check_button_toggled"]

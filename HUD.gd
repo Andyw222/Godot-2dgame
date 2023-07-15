@@ -2,6 +2,7 @@ extends CanvasLayer
 signal start_game
 signal highscore_name
 signal highscore_screen_finish
+signal mute_pressed
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -63,3 +64,7 @@ func _on_highscore_screen_timer_timeout():
 	highscore_screen_finish.emit()
 	print("highscore screen finish emitted")
 	$HighscoreScreenLabel.hide()
+
+
+func _on_check_button_toggled(button_pressed):
+	mute_pressed.emit(button_pressed)

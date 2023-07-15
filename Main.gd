@@ -8,10 +8,14 @@ var mob_settings
 var score
 var mob_left
 var final_score
-var dead = false
-
+var dead = true
+var default_settings = {
+	"mute": false
+}
+var settings
 	
 var save_data = {}
+var music_pos = 0.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -28,12 +32,20 @@ func _ready():
 
 		#new_savedata[n].highscore = 0
 	print(JSON.stringify(save_data))
-	var load = $SaveGame.load()
+	var load = $SaveGame.load("save_game")
+	var load_settings = $SaveGame.load("settings")
 	if load == null:
 		save_data = save_data
 	else:
 		save_data = load
 	print(JSON.stringify(save_data))
+	
+	if load_settings == null:
+		settings = default_settings
+	else:
+		settings = load_settings
+		$HUD/CheckButton.button_pressed = settings["mute"]
+	print(JSON.stringify(settings))
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -63,7 +75,7 @@ func continue_game_over(name):
 	if final_score > save_data[$HUD/DifficultyButton.selected].highscore:
 		save_data[$HUD/DifficultyButton.selected].highscore = final_score
 		save_data[$HUD/DifficultyButton.selected].name = name
-	$SaveGame.save(save_data)
+	$SaveGame.save(save_data, "save_game")
 	$HUD.name_box_hide()
 	$HUD.highscore_screen_show(highscore_text())
 
@@ -114,7 +126,8 @@ func new_game():
 	$HUD.update_lives(lives)
 	$HUD.show_message("Get Ready\n\n\n\n")
 	get_tree().call_group("mobs", "queue_free")
-	$Music.play()
+	if ! settings["mute"]:
+		$Music.play()
 	$Player.update_sprite_mode("")
 	$Player.update_indestructible(false)
 
@@ -164,3 +177,15 @@ func _on_mob_mob_leave(blah):
 		final_score = score * mob_left
 		print("Score: %s" % final_score)
 		$HUD.update_highscore(final_score)
+
+
+func _on_hud_mute_pressed(muted):
+	settings["mute"] = muted
+	$SaveGame.save(settings, "settings")
+	
+	if ! dead:
+		if muted:
+			music_pos = $Music.get_playback_position()
+			$Music.stop()
+		else:
+			$Music.play(music_pos)

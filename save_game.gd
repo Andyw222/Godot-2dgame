@@ -1,11 +1,11 @@
 extends Node
 
-func save(content):
-	var savegame = FileAccess.open("user://save_game.dat", FileAccess.WRITE)
+func save(content, file):
+	var savegame = FileAccess.open("user://%s.dat" % file, FileAccess.WRITE)
 	savegame.store_var(content)
 
-func load():
-	var savegame = FileAccess.open("user://save_game.dat", FileAccess.READ)
+func load(file):
+	var savegame = FileAccess.open("user://%s.dat" % file, FileAccess.READ)
 	if savegame == null:
 		return null
 		print(savegame)
